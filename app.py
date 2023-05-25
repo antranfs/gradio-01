@@ -59,9 +59,10 @@ with gr.Blocks() as demo:
     clear = gr.Button("Clear")
 
     def respond(message, chat_history):
-        # bot_message = random.choice(["How are you?", "I love you", "I'm very hungry"])
-        messages.append({'role': 'user', 'content': message})
+        # process message
         bot_message = get_completion_from_messages(messages)
+        # update chat history
+        messages.append({'role': 'user', 'content': message})
         messages.append({'role': 'assistant', 'content': bot_message})
         chat_history.append((message, bot_message))
         time.sleep(1)
